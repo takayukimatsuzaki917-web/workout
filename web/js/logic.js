@@ -131,6 +131,7 @@ export function buildProgram(data, profile, sportId) {
       name_ja: ex.name_ja,
       equipment: ex.equipment,
       category: ex.category,
+      youtube_id: ex.youtube_id,
       description: ex.description,
       target_muscles: ex.target_muscles,
       muscle_svg_ids: ex.muscle_svg_ids,

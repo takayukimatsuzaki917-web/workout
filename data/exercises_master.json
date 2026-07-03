@@ -1,6 +1,7 @@
 [
   {
     "id": "squat_barbell",
+    "youtube_id": "yIRiARz90UI",
     "movement_pattern": "squat",
     "name_ja": "バーベルスクワット",
     "category": "下半身",
@@ -19,6 +20,7 @@
   },
   {
     "id": "deadlift_conventional",
+    "youtube_id": "O_sniQNwdck",
     "movement_pattern": "hinge",
     "name_ja": "コンベンショナルデッドリフト",
     "category": "下半身",
@@ -37,6 +39,7 @@
   },
   {
     "id": "lunge_dumbbell",
+    "youtube_id": "5Q68jZe4tFg",
     "movement_pattern": "lunge",
     "name_ja": "ダンベルランジ",
     "category": "下半身",
@@ -54,6 +57,7 @@
   },
   {
     "id": "leg_press",
+    "youtube_id": "A2JlSIu3nl8",
     "movement_pattern": "squat",
     "name_ja": "レッグプレス",
     "category": "下半身",
@@ -72,6 +76,7 @@
   },
   {
     "id": "calf_raise_standing",
+    "youtube_id": "xDSrCEvSnyM",
     "movement_pattern": "calf_raise",
     "name_ja": "スタンディングカーフレイズ",
     "category": "下半身",
@@ -89,6 +94,7 @@
   },
   {
     "id": "bulgarian_split_squat",
+    "youtube_id": "EKQ4p8ogZkI",
     "movement_pattern": "lunge",
     "name_ja": "ブルガリアンスクワット",
     "category": "下半身",
@@ -107,6 +113,7 @@
   },
   {
     "id": "leg_curl",
+    "youtube_id": "pS4sSjNtvR8",
     "movement_pattern": "hinge",
     "name_ja": "レッグカール",
     "category": "下半身",
@@ -124,6 +131,7 @@
   },
   {
     "id": "hip_thrust",
+    "youtube_id": "6S1b8pU9sHk",
     "movement_pattern": "hinge",
     "name_ja": "ヒップスラスト",
     "category": "下半身",
@@ -142,6 +150,7 @@
   },
   {
     "id": "bench_press_barbell",
+    "youtube_id": "w9nQSjJs-pM",
     "movement_pattern": "horizontal_push",
     "name_ja": "バーベルベンチプレス",
     "category": "上半身プッシュ",
@@ -160,6 +169,7 @@
   },
   {
     "id": "shoulder_press_dumbbell",
+    "youtube_id": "uHaetTkx-_g",
     "movement_pattern": "vertical_push",
     "name_ja": "ダンベルショルダープレス",
     "category": "上半身プッシュ",
@@ -178,6 +188,7 @@
   },
   {
     "id": "push_up",
+    "youtube_id": "5SBAn4WnHWI",
     "movement_pattern": "horizontal_push",
     "name_ja": "プッシュアップ",
     "category": "上半身プッシュ",
@@ -195,6 +206,7 @@
   },
   {
     "id": "incline_bench_press",
+    "youtube_id": "Unc20x4ggVA",
     "movement_pattern": "horizontal_push",
     "name_ja": "インクラインベンチプレス",
     "category": "上半身プッシュ",
@@ -213,6 +225,7 @@
   },
   {
     "id": "dip",
+    "youtube_id": "4NtPyLcvigw",
     "movement_pattern": "vertical_push",
     "name_ja": "ディップス",
     "category": "上半身プッシュ",
@@ -230,6 +243,7 @@
   },
   {
     "id": "pull_up",
+    "youtube_id": "40Sq7kkUuWM",
     "movement_pattern": "vertical_pull",
     "name_ja": "懸垂",
     "category": "上半身プル",
@@ -247,6 +261,7 @@
   },
   {
     "id": "lat_pulldown",
+    "youtube_id": "mG1T29lwrNI",
     "movement_pattern": "vertical_pull",
     "name_ja": "ラットプルダウン",
     "category": "上半身プル",
@@ -265,6 +280,7 @@
   },
   {
     "id": "barbell_row",
+    "youtube_id": "3tTTIHt8cyA",
     "movement_pattern": "horizontal_pull",
     "name_ja": "バーベルロウ",
     "category": "上半身プル",
@@ -283,6 +299,7 @@
   },
   {
     "id": "dumbbell_row",
+    "youtube_id": "71NcdOwfMv8",
     "movement_pattern": "horizontal_pull",
     "name_ja": "ダンベルロウ",
     "category": "上半身プル",
@@ -301,6 +318,7 @@
   },
   {
     "id": "face_pull",
+    "youtube_id": "LtvBux1qVlI",
     "movement_pattern": "horizontal_pull",
     "name_ja": "フェイスプル",
     "category": "上半身プル",
@@ -318,6 +336,7 @@
   },
   {
     "id": "plank",
+    "youtube_id": "UgkU2S8VUX4",
     "movement_pattern": "core_hold",
     "name_ja": "プランク",
     "category": "体幹",
@@ -335,6 +354,7 @@
   },
   {
     "id": "russian_twist",
+    "youtube_id": "FVQ8KN2g-ig",
     "movement_pattern": "core_rotation",
     "name_ja": "ロシアンツイスト",
     "category": "体幹",
@@ -352,6 +372,7 @@
   },
   {
     "id": "dead_bug",
+    "youtube_id": "Wb7_mqepkfw",
     "movement_pattern": "core_hold",
     "name_ja": "デッドバグ",
     "category": "体幹",
@@ -369,6 +390,7 @@
   },
   {
     "id": "hanging_leg_raise",
+    "youtube_id": "PIkCcvVn3cg",
     "movement_pattern": "core_hold",
     "name_ja": "ハンギングレッグレイズ",
     "category": "体幹",
@@ -386,6 +408,7 @@
   },
   {
     "id": "side_plank",
+    "youtube_id": "AKUGmosS7fM",
     "movement_pattern": "core_hold",
     "name_ja": "サイドプランク",
     "category": "体幹",
@@ -403,6 +426,7 @@
   },
   {
     "id": "power_clean",
+    "youtube_id": "R0Mjc18dYfw",
     "movement_pattern": "power",
     "name_ja": "パワークリーン",
     "category": "全身・パワー系",
@@ -421,6 +445,7 @@
   },
   {
     "id": "kettlebell_swing",
+    "youtube_id": "05JYu5zEh4Y",
     "movement_pattern": "hinge",
     "name_ja": "ケトルベルスイング",
     "category": "全身・パワー系",
@@ -438,6 +463,7 @@
   },
   {
     "id": "medicine_ball_slam",
+    "youtube_id": "BBIjtW2ci0g",
     "movement_pattern": "power",
     "name_ja": "メディシンボールスラム",
     "category": "全身・パワー系",
@@ -455,6 +481,7 @@
   },
   {
     "id": "dumbbell_snatch",
+    "youtube_id": "Cj5_78hlRvA",
     "movement_pattern": "power",
     "name_ja": "ダンベルスナッチ",
     "category": "全身・パワー系",
@@ -472,6 +499,7 @@
   },
   {
     "id": "cable_woodchopper",
+    "youtube_id": "V3a_3AVjeq4",
     "movement_pattern": "core_rotation",
     "name_ja": "ケーブルウッドチョッパー",
     "category": "全身・パワー系",
@@ -489,6 +517,7 @@
   },
   {
     "id": "medicine_ball_rotational_throw",
+    "youtube_id": "iYVZJXmWE6o",
     "movement_pattern": "core_rotation",
     "name_ja": "メディシンボール回旋スロー",
     "category": "全身・パワー系",
@@ -506,6 +535,7 @@
   },
   {
     "id": "barbell_shrug",
+    "youtube_id": "dbCH-GIQ_ys",
     "movement_pattern": "carry",
     "name_ja": "バーベルシュラッグ",
     "category": "上半身プル",
@@ -524,6 +554,7 @@
   },
   {
     "id": "farmers_walk",
+    "youtube_id": "G2VnjH1rdL8",
     "movement_pattern": "carry",
     "name_ja": "ファーマーズウォーク",
     "category": "握力・前腕",
@@ -541,6 +572,7 @@
   },
   {
     "id": "hang_grip",
+    "youtube_id": "_PaeG6txYwo",
     "movement_pattern": "carry",
     "name_ja": "ハンググリップ（デッドハング）",
     "category": "握力・前腕",
@@ -558,6 +590,7 @@
   },
   {
     "id": "wrist_curl",
+    "youtube_id": "I7JMT_aUa3E",
     "movement_pattern": "carry",
     "name_ja": "リストカール",
     "category": "握力・前腕",
@@ -575,6 +608,7 @@
   },
   {
     "id": "pinch_grip",
+    "youtube_id": "Gc8O3AVY0e8",
     "movement_pattern": "carry",
     "name_ja": "ピンチグリップ",
     "category": "握力・前腕",
@@ -592,6 +626,7 @@
   },
   {
     "id": "bike_ergometer",
+    "youtube_id": "9mGLGb4PazI",
     "movement_pattern": "cardio_cycle",
     "name_ja": "エアロバイク",
     "category": "有酸素/持久系補助",
@@ -609,6 +644,7 @@
   },
   {
     "id": "rowing_machine",
+    "youtube_id": "-XXvrDDW6RM",
     "movement_pattern": "cardio_row",
     "name_ja": "ローイングマシン",
     "category": "有酸素/持久系補助",
@@ -626,6 +662,7 @@
   },
   {
     "id": "interval_run",
+    "youtube_id": "5Xm2TODQZ7Y",
     "movement_pattern": "cardio_run",
     "name_ja": "インターバル走",
     "category": "有酸素/持久系補助",
@@ -643,6 +680,7 @@
   },
   {
     "id": "jump_rope",
+    "youtube_id": "5KvhPsN8lWw",
     "movement_pattern": "cardio_run",
     "name_ja": "縄跳び",
     "category": "有酸素/持久系補助",

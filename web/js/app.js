@@ -13,6 +13,30 @@ import { renderMuscleMap, primarySide, PRIMARY_COLOR, SECONDARY_COLOR } from "./
 // ---- 定数・アイコン（絵文字は使わずSVGで統一）----
 const PLAY_SVG =
   '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const PLAY_SVG_LG =
+  '<svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+
+/**
+ * YouTube動画の埋め込みプレイヤー（サムネイル→クリックでiframe読み込み）。
+ * 一覧に複数あってもiframeを一斉に読み込まないよう、既定はサムネイルのみ表示する。
+ */
+function videoEmbed(youtubeId) {
+  if (!youtubeId) return "";
+  return `
+  <div class="mt-3">
+    <div class="video-thumb relative aspect-video cursor-pointer overflow-hidden rounded-xl bg-slate-900 group"
+      data-action="play-video" data-yt="${youtubeId}" role="button" aria-label="やり方を動画で見る">
+      <img src="https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg" alt="やり方動画のサムネイル" loading="lazy"
+        class="h-full w-full object-cover opacity-95 transition group-hover:opacity-100">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="grid h-14 w-14 place-items-center rounded-full bg-rose-600/90 pl-1 text-white shadow-lg transition group-hover:scale-105">${PLAY_SVG_LG}</div>
+      </div>
+      <div class="absolute bottom-2 left-2 rounded bg-black/60 px-2 py-0.5 text-[11px] font-medium text-white">やり方を動画で見る</div>
+    </div>
+    <a href="https://www.youtube.com/watch?v=${youtubeId}" target="_blank" rel="noopener"
+      class="mt-1 block text-right text-[11px] text-slate-400 hover:text-slate-600">再生できない場合はYouTubeで開く ›</a>
+  </div>`;
+}
 const LEVELS = ["初心者", "中級者", "上級者"];
 const GENDERS = ["男性", "女性"];
 const PROFILE_KEY = "workout_profile";
@@ -21,9 +45,6 @@ const PROFILE_KEY = "workout_profile";
 const state = { data: null, profile: null, sportId: null, step: "profile" };
 
 const $app = () => document.getElementById("app");
-const escapeAttr = (s) => String(s).replace(/"/g, "&quot;");
-const youtubeUrl = (name) =>
-  "https://www.youtube.com/results?search_query=" + encodeURIComponent(`${name} やり方 フォーム`);
 
 // ---- 初期化 ----
 async function init() {
@@ -160,9 +181,7 @@ function exerciseCard(ex) {
         </dl>
       </div>
     </div>
-    <a href="${youtubeUrl(ex.name_ja)}" target="_blank" rel="noopener"
-      class="mt-3 flex items-center justify-center gap-2 rounded-xl bg-rose-500 py-2.5 text-sm font-bold text-white shadow-sm shadow-rose-200 active:scale-[.99] transition">
-      ${PLAY_SVG}やり方を動画で見る</a>
+    ${ex.youtube_id ? videoEmbed(ex.youtube_id) : ""}
     <button type="button" data-action="open-detail" data-ex="${ex.id}"
       class="mt-2 w-full rounded-xl bg-slate-100 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 transition">
       詳細・対象筋肉・代替種目を見る</button>
@@ -267,12 +286,13 @@ function openDetail(exId) {
       </div>
       <p class="mt-4 text-sm leading-relaxed text-slate-600">${ex.description}</p>
       <div class="mt-4">
+        <div class="mb-1 text-sm font-bold text-slate-700">やり方の動画</div>
+        ${videoEmbed(ex.youtube_id)}
+      </div>
+      <div class="mt-4">
         <div class="text-sm font-bold text-slate-700">代替種目の候補</div>
         <ul class="mt-1 space-y-0.5">${altHtml}</ul>
       </div>
-      <a href="${youtubeUrl(ex.name_ja)}" target="_blank" rel="noopener"
-        class="mt-5 flex items-center justify-center gap-2 rounded-xl bg-rose-500 py-2.5 text-sm font-bold text-white active:scale-[.99] transition">
-        ${PLAY_SVG}やり方を動画で見る</a>
     </div>`;
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay || e.target.closest('[data-action="close-modal"]')) overlay.remove();
@@ -320,6 +340,13 @@ document.addEventListener("click", (e) => {
     navigate("result");
   } else if (action === "open-detail") {
     openDetail(actionEl.getAttribute("data-ex"));
+  } else if (action === "play-video") {
+    // サムネイルをクリックしたら、その場でiframeに差し替えて再生する
+    const id = actionEl.getAttribute("data-yt");
+    actionEl.outerHTML =
+      `<div class="aspect-video overflow-hidden rounded-xl bg-black">` +
+      `<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" ` +
+      `title="やり方の動画" frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div>`;
   }
 });
 
