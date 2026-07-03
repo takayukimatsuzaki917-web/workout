@@ -7,6 +7,7 @@ import streamlit as st
 from logic.muscle_coverage import aggregate_program_coverage, classify_exercise_muscles
 from logic.program_builder import build_program, find_alternative_exercises, load_sports_master
 from ui.body_diagram import render_body_diagram_svg
+from ui.exercise_animation import get_movement_label, render_exercise_animation
 
 LEVEL_OPTIONS = ["初心者", "中級者", "上級者"]
 
@@ -82,13 +83,35 @@ def render_sport_screen() -> None:
                     st.rerun()
 
 
+def _weight_short_html(weight_recommendation: dict) -> str:
+    """カード表示用に、推奨重量を簡潔なHTML文字列にまとめる。"""
+    if weight_recommendation["has_weight_target"]:
+        weight_kg = weight_recommendation["weight_kg"]
+        ratio = weight_recommendation["bodyweight_ratio"]
+        return (
+            f'<span class="ex-weight-strong">{weight_kg}kg</span>'
+            f'<span class="ex-weight-body">（体重の{ratio}倍・目安）</span>'
+        )
+    return '<span class="ex-weight-body">自重・可変重量（重量目安なし）</span>'
+
+
+def _render_animation_demo(exercise: dict) -> None:
+    """動作アニメーションのデモを枠付きで描画する。"""
+    animation_svg = render_exercise_animation(exercise["movement_pattern"])
+    st.markdown(f'<div class="ex-demo">{animation_svg}</div>', unsafe_allow_html=True)
+    st.markdown('<div class="ex-demo-caption">▶ 動作イメージ（自動再生）</div>', unsafe_allow_html=True)
+
+
 @st.dialog("種目詳細")
 def _render_exercise_detail_dialog(exercise: dict) -> None:
-    """種目1件分の詳細（説明・対象筋肉の体図・代替種目）をモーダル表示する。"""
+    """種目1件分の詳細（動作デモ・説明・対象筋肉の体図・代替種目）をモーダル表示する。"""
     st.subheader(exercise["name_ja"])
-    st.caption(f"使用器具: {exercise['equipment']}")
+    st.caption(f"使用器具: {exercise['equipment']}｜{get_movement_label(exercise['movement_pattern'])}")
+
+    _render_animation_demo(exercise)
     st.write(exercise["description"])
 
+    st.markdown("**対象筋肉**")
     highlight_map = classify_exercise_muscles(exercise)
     diagram_columns = st.columns(2)
     with diagram_columns[0]:
@@ -108,23 +131,37 @@ def _render_exercise_detail_dialog(exercise: dict) -> None:
 
 
 def _render_exercise_card(exercise: dict) -> None:
-    """種目一覧の1カード分を表示する。"""
+    """種目一覧の1カード分を表示する。動作アニメーション＋初心者向け説明＋各種情報。"""
     with st.container(border=True):
-        st.subheader(exercise["name_ja"])
-        info_column, diagram_column = st.columns([2, 1])
+        # 種目名は全幅で表示し、長い名前でも折り返して見切れないようにする
+        st.markdown(f'<div class="ex-title">{exercise["name_ja"]}</div>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="ex-sub">🏋️ {exercise["equipment"]}　｜　'
+            f'▶ {get_movement_label(exercise["movement_pattern"])}</div>',
+            unsafe_allow_html=True,
+        )
+
+        demo_column, info_column = st.columns([1, 1.6])
+
+        with demo_column:
+            _render_animation_demo(exercise)
 
         with info_column:
-            st.write(f"**対象部位:** {'、'.join(exercise['target_muscles'])}")
-            st.write(f"**セット×回数:** {exercise['sets']}セット × {exercise['reps']}")
-            st.write(f"**休憩:** {exercise['rest_seconds']}秒")
-            st.write(f"**{exercise['weight_recommendation']['display_text']}**")
-            st.write(f"**消費カロリー目安:** 約{exercise['calories_kcal']}kcal")
-            if st.button("詳細を見る", key=f"detail_{exercise['id']}"):
-                _render_exercise_detail_dialog(exercise)
+            # 「どんな種目か」を常に表示（初心者がイメージを掴めるように）
+            st.markdown(f'<div class="ex-desc">{exercise["description"]}</div>', unsafe_allow_html=True)
+            info_html = (
+                '<div class="ex-info">'
+                f'<div><span class="ex-label">🎯 対象</span>{"、".join(exercise["target_muscles"])}</div>'
+                f'<div><span class="ex-label">🔁 量</span>{exercise["sets"]}セット × {exercise["reps"]}</div>'
+                f'<div><span class="ex-label">⏱ 休憩</span>{exercise["rest_seconds"]}秒</div>'
+                f'<div><span class="ex-label">🏋 重量</span>{_weight_short_html(exercise["weight_recommendation"])}</div>'
+                f'<div><span class="ex-label">🔥 消費</span>約{exercise["calories_kcal"]}kcal</div>'
+                '</div>'
+            )
+            st.markdown(info_html, unsafe_allow_html=True)
 
-        with diagram_column:
-            highlight_map = classify_exercise_muscles(exercise)
-            st.markdown(render_body_diagram_svg(highlight_map, "front"), unsafe_allow_html=True)
+        if st.button("詳細・対象筋肉・代替種目を見る", key=f"detail_{exercise['id']}", use_container_width=True):
+            _render_exercise_detail_dialog(exercise)
 
 
 def render_result_screen() -> None:

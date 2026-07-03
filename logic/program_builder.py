@@ -117,6 +117,7 @@ def build_program(profile: dict, sport_id: str) -> dict:
             "id": exercise["id"],
             "name_ja": exercise["name_ja"],
             "equipment": exercise["equipment"],
+            "movement_pattern": exercise["movement_pattern"],
             "description": exercise["description"],
             "target_muscles": exercise["target_muscles"],
             "muscle_svg_ids": exercise["muscle_svg_ids"],

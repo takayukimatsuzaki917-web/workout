@@ -25,6 +25,7 @@ def test_build_program_returns_valid_structure_for_every_sport(sport_id):
         assert exercise["name_ja"]
         assert exercise["equipment"]
         assert exercise["description"]
+        assert exercise["movement_pattern"]
         assert exercise["target_muscles"]
         assert exercise["muscle_svg_ids"]
         assert exercise["calories_kcal"] > 0

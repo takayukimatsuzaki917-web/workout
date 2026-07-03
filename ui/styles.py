@@ -5,7 +5,7 @@ import streamlit as st
 _BASE_CSS = """
 <style>
 div[data-testid="stVerticalBlockBorderWrapper"] {
-    border-radius: 12px;
+    border-radius: 14px;
 }
 .disclaimer-footer {
     margin-top: 2rem;
@@ -19,6 +19,60 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
     text-align: center;
     font-weight: 600;
 }
+
+/* ===== 種目カード ===== */
+.ex-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1d3557;
+    line-height: 1.35;
+    word-break: break-word;   /* 長い種目名も折り返して見切れを防ぐ */
+}
+.ex-sub {
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin: 0.15rem 0 0.6rem 0;
+}
+.ex-demo {
+    background: linear-gradient(180deg, #f5f8fc 0%, #eaf0f7 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ex-demo-caption {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.75rem;
+    margin-top: 2px;
+}
+.ex-desc {
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.55;
+    margin-bottom: 0.55rem;
+}
+.ex-info div {
+    font-size: 0.88rem;
+    color: #374151;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+.ex-label {
+    display: inline-block;
+    min-width: 4.2em;
+    font-weight: 600;
+    color: #1d3557;
+    background: #eef2f7;
+    border-radius: 6px;
+    padding: 1px 7px;
+    margin-right: 6px;
+    font-size: 0.8rem;
+}
+.ex-weight-strong { color: #b02a37; font-weight: 600; }
+.ex-weight-body   { color: #6b7280; }
 </style>
 """
 

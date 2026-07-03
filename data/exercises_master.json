@@ -1,6 +1,7 @@
 [
   {
     "id": "squat_barbell",
+    "movement_pattern": "squat",
     "name_ja": "バーベルスクワット",
     "category": "下半身",
     "equipment": "バーベル・スクワットラック",
@@ -18,6 +19,7 @@
   },
   {
     "id": "deadlift_conventional",
+    "movement_pattern": "hinge",
     "name_ja": "コンベンショナルデッドリフト",
     "category": "下半身",
     "equipment": "バーベル",
@@ -35,6 +37,7 @@
   },
   {
     "id": "lunge_dumbbell",
+    "movement_pattern": "lunge",
     "name_ja": "ダンベルランジ",
     "category": "下半身",
     "equipment": "ダンベル",
@@ -51,6 +54,7 @@
   },
   {
     "id": "leg_press",
+    "movement_pattern": "squat",
     "name_ja": "レッグプレス",
     "category": "下半身",
     "equipment": "レッグプレスマシン",
@@ -68,6 +72,7 @@
   },
   {
     "id": "calf_raise_standing",
+    "movement_pattern": "calf_raise",
     "name_ja": "スタンディングカーフレイズ",
     "category": "下半身",
     "equipment": "カーフレイズマシン・ダンベル",
@@ -84,6 +89,7 @@
   },
   {
     "id": "bulgarian_split_squat",
+    "movement_pattern": "lunge",
     "name_ja": "ブルガリアンスクワット",
     "category": "下半身",
     "equipment": "ダンベル・ベンチ",
@@ -101,6 +107,7 @@
   },
   {
     "id": "leg_curl",
+    "movement_pattern": "hinge",
     "name_ja": "レッグカール",
     "category": "下半身",
     "equipment": "レッグカールマシン",
@@ -117,6 +124,7 @@
   },
   {
     "id": "hip_thrust",
+    "movement_pattern": "hinge",
     "name_ja": "ヒップスラスト",
     "category": "下半身",
     "equipment": "バーベル・ベンチ",
@@ -134,6 +142,7 @@
   },
   {
     "id": "bench_press_barbell",
+    "movement_pattern": "horizontal_push",
     "name_ja": "バーベルベンチプレス",
     "category": "上半身プッシュ",
     "equipment": "バーベル・ベンチ",
@@ -151,6 +160,7 @@
   },
   {
     "id": "shoulder_press_dumbbell",
+    "movement_pattern": "vertical_push",
     "name_ja": "ダンベルショルダープレス",
     "category": "上半身プッシュ",
     "equipment": "ダンベル",
@@ -168,6 +178,7 @@
   },
   {
     "id": "push_up",
+    "movement_pattern": "horizontal_push",
     "name_ja": "プッシュアップ",
     "category": "上半身プッシュ",
     "equipment": "自重",
@@ -184,6 +195,7 @@
   },
   {
     "id": "incline_bench_press",
+    "movement_pattern": "horizontal_push",
     "name_ja": "インクラインベンチプレス",
     "category": "上半身プッシュ",
     "equipment": "バーベル・インクラインベンチ",
@@ -201,6 +213,7 @@
   },
   {
     "id": "dip",
+    "movement_pattern": "vertical_push",
     "name_ja": "ディップス",
     "category": "上半身プッシュ",
     "equipment": "ディップスバー",
@@ -217,6 +230,7 @@
   },
   {
     "id": "pull_up",
+    "movement_pattern": "vertical_pull",
     "name_ja": "懸垂",
     "category": "上半身プル",
     "equipment": "懸垂バー",
@@ -233,6 +247,7 @@
   },
   {
     "id": "lat_pulldown",
+    "movement_pattern": "vertical_pull",
     "name_ja": "ラットプルダウン",
     "category": "上半身プル",
     "equipment": "ラットプルダウンマシン",
@@ -250,6 +265,7 @@
   },
   {
     "id": "barbell_row",
+    "movement_pattern": "horizontal_pull",
     "name_ja": "バーベルロウ",
     "category": "上半身プル",
     "equipment": "バーベル",
@@ -267,6 +283,7 @@
   },
   {
     "id": "dumbbell_row",
+    "movement_pattern": "horizontal_pull",
     "name_ja": "ダンベルロウ",
     "category": "上半身プル",
     "equipment": "ダンベル・ベンチ",
@@ -284,6 +301,7 @@
   },
   {
     "id": "face_pull",
+    "movement_pattern": "horizontal_pull",
     "name_ja": "フェイスプル",
     "category": "上半身プル",
     "equipment": "ケーブルマシン",
@@ -300,6 +318,7 @@
   },
   {
     "id": "plank",
+    "movement_pattern": "core_hold",
     "name_ja": "プランク",
     "category": "体幹",
     "equipment": "自重",
@@ -316,6 +335,7 @@
   },
   {
     "id": "russian_twist",
+    "movement_pattern": "core_rotation",
     "name_ja": "ロシアンツイスト",
     "category": "体幹",
     "equipment": "自重・メディシンボール",
@@ -332,6 +352,7 @@
   },
   {
     "id": "dead_bug",
+    "movement_pattern": "core_hold",
     "name_ja": "デッドバグ",
     "category": "体幹",
     "equipment": "自重",
@@ -348,6 +369,7 @@
   },
   {
     "id": "hanging_leg_raise",
+    "movement_pattern": "core_hold",
     "name_ja": "ハンギングレッグレイズ",
     "category": "体幹",
     "equipment": "懸垂バー",
@@ -364,6 +386,7 @@
   },
   {
     "id": "side_plank",
+    "movement_pattern": "core_hold",
     "name_ja": "サイドプランク",
     "category": "体幹",
     "equipment": "自重",
@@ -380,6 +403,7 @@
   },
   {
     "id": "power_clean",
+    "movement_pattern": "power",
     "name_ja": "パワークリーン",
     "category": "全身・パワー系",
     "equipment": "バーベル",
@@ -397,6 +421,7 @@
   },
   {
     "id": "kettlebell_swing",
+    "movement_pattern": "hinge",
     "name_ja": "ケトルベルスイング",
     "category": "全身・パワー系",
     "equipment": "ケトルベル",
@@ -413,6 +438,7 @@
   },
   {
     "id": "medicine_ball_slam",
+    "movement_pattern": "power",
     "name_ja": "メディシンボールスラム",
     "category": "全身・パワー系",
     "equipment": "メディシンボール",
@@ -429,6 +455,7 @@
   },
   {
     "id": "dumbbell_snatch",
+    "movement_pattern": "power",
     "name_ja": "ダンベルスナッチ",
     "category": "全身・パワー系",
     "equipment": "ダンベル",
@@ -445,6 +472,7 @@
   },
   {
     "id": "cable_woodchopper",
+    "movement_pattern": "core_rotation",
     "name_ja": "ケーブルウッドチョッパー",
     "category": "全身・パワー系",
     "equipment": "ケーブルマシン",
@@ -461,6 +489,7 @@
   },
   {
     "id": "medicine_ball_rotational_throw",
+    "movement_pattern": "core_rotation",
     "name_ja": "メディシンボール回旋スロー",
     "category": "全身・パワー系",
     "equipment": "メディシンボール",
@@ -477,6 +506,7 @@
   },
   {
     "id": "barbell_shrug",
+    "movement_pattern": "carry",
     "name_ja": "バーベルシュラッグ",
     "category": "上半身プル",
     "equipment": "バーベル",
@@ -494,6 +524,7 @@
   },
   {
     "id": "farmers_walk",
+    "movement_pattern": "carry",
     "name_ja": "ファーマーズウォーク",
     "category": "握力・前腕",
     "equipment": "ダンベル・トラップバー",
@@ -510,6 +541,7 @@
   },
   {
     "id": "hang_grip",
+    "movement_pattern": "carry",
     "name_ja": "ハンググリップ（デッドハング）",
     "category": "握力・前腕",
     "equipment": "懸垂バー",
@@ -526,6 +558,7 @@
   },
   {
     "id": "wrist_curl",
+    "movement_pattern": "carry",
     "name_ja": "リストカール",
     "category": "握力・前腕",
     "equipment": "ダンベル",
@@ -542,6 +575,7 @@
   },
   {
     "id": "pinch_grip",
+    "movement_pattern": "carry",
     "name_ja": "ピンチグリップ",
     "category": "握力・前腕",
     "equipment": "プレート",
@@ -558,6 +592,7 @@
   },
   {
     "id": "bike_ergometer",
+    "movement_pattern": "cardio_cycle",
     "name_ja": "エアロバイク",
     "category": "有酸素/持久系補助",
     "equipment": "エアロバイク",
@@ -574,6 +609,7 @@
   },
   {
     "id": "rowing_machine",
+    "movement_pattern": "cardio_row",
     "name_ja": "ローイングマシン",
     "category": "有酸素/持久系補助",
     "equipment": "ローイングマシン",
@@ -590,6 +626,7 @@
   },
   {
     "id": "interval_run",
+    "movement_pattern": "cardio_run",
     "name_ja": "インターバル走",
     "category": "有酸素/持久系補助",
     "equipment": "なし",
@@ -606,6 +643,7 @@
   },
   {
     "id": "jump_rope",
+    "movement_pattern": "cardio_run",
     "name_ja": "縄跳び",
     "category": "有酸素/持久系補助",
     "equipment": "縄跳び",
