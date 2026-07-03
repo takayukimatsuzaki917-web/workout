@@ -25,12 +25,25 @@ VIEW_WIDTH = 120
 VIEW_HEIGHT = 170
 GROUND_Y = 156
 
-# 配色
-FIGURE_COLOR = "#1d3557"       # 手前側の体（濃い青）
-FAR_LIMB_COLOR = "#93a7bd"     # 奥側の手足（薄い色で奥行きを表現）
-PROP_BAR_COLOR = "#495057"     # バーベルの棒
-PROP_PLATE_COLOR = "#e63946"   # プレート（重り）
+# 配色（親しみやすいキャラクター風・オリジナルデザイン）
+SKIN = "#f7c49a"             # 手前側の肌
+SKIN_FAR = "#e6b083"         # 奥側の肌（少し濃くして奥行きを表現）
+HAIR = "#5a3825"             # 髪
+SHIRT = "#ef6f6c"            # シャツ（胴体・袖）
+SHORTS = "#3f6d9e"           # ショートパンツ
+SHOE = "#f4a259"             # 靴（手前）
+SHOE_FAR = "#dc9350"         # 靴（奥）
+FACE = "#4a3b32"             # 目・口
+PROP_BAR_COLOR = "#495057"   # バーベルの棒
+PROP_PLATE_COLOR = "#e63946" # プレート（重り）
 GROUND_COLOR = "#ced4da"
+
+# 体パーツの太さ・大きさ
+LIMB_WIDTH = 8       # 手前の手足
+FAR_LIMB_WIDTH = 7   # 奥の手足
+TORSO_WIDTH = 16     # 胴体（シャツ）
+HEAD_R = 11          # 頭の半径
+SHOE_RX = 6          # 靴の横幅
 
 # アニメーションのイージング（滑らかな加減速）
 _EASE = "0.42 0 0.58 1"
@@ -236,19 +249,56 @@ def _animated_polyline(part_a: list, part_b: list, dur: float, mid: float, color
     )
 
 
-def _animated_head(head_a: tuple, head_b: tuple, dur: float, mid: float) -> str:
-    """往復アニメーション付きの頭（円）を生成する。"""
-    ax, ay = head_a
-    bx, by = head_b
-    cx_anim = (
-        f'<animate attributeName="cx" dur="{dur}s" repeatCount="indefinite" calcMode="spline" '
-        f'keyTimes="0;{mid};1" keySplines="{_EASE};{_EASE}" values="{ax};{bx};{ax}"/>'
+def _translated_group(inner: str, ax: float, ay: float, bx: float, by: float, dur: float, mid: float) -> str:
+    """静的パーツ inner を (ax,ay)→(bx,by) へ、手足のpolylineと同じイージングで往復移動させる。
+
+    肌の手足の端点（手・足）や頭に置くパーツ（靴・手・頭部）を、
+    ポーズ間の端点の動きにぴったり追従させるために使う。
+    """
+    dx, dy = bx - ax, by - ay
+    anim = (
+        f'<animateTransform attributeName="transform" type="translate" dur="{dur}s" '
+        f'repeatCount="indefinite" calcMode="spline" keyTimes="0;{mid};1" '
+        f'keySplines="{_EASE};{_EASE}" values="0 0;{dx} {dy};0 0"/>'
     )
-    cy_anim = (
-        f'<animate attributeName="cy" dur="{dur}s" repeatCount="indefinite" calcMode="spline" '
-        f'keyTimes="0;{mid};1" keySplines="{_EASE};{_EASE}" values="{ay};{by};{ay}"/>'
+    return f'<g>{inner}{anim}</g>'
+
+
+def _head_svg(cx: float, cy: float) -> str:
+    """肌色の顔＋髪＋目＋口のキャラクター頭部を描く（静的パーツ）。"""
+    r = HEAD_R
+    return (
+        f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{SKIN}"/>'
+        # 頭頂を覆う髪（上半円を太いストロークで）
+        f'<path d="M {cx - r} {cy - 1} A {r} {r} 0 0 1 {cx + r} {cy - 1}" '
+        f'fill="none" stroke="{HAIR}" stroke-width="7" stroke-linecap="round"/>'
+        # 目（正面向きで親しみやすく）
+        f'<circle cx="{cx - 3.6}" cy="{cy + 1.5}" r="1.5" fill="{FACE}"/>'
+        f'<circle cx="{cx + 3.6}" cy="{cy + 1.5}" r="1.5" fill="{FACE}"/>'
+        # 口（にっこり）
+        f'<path d="M {cx - 3} {cy + 5.5} Q {cx} {cy + 8} {cx + 3} {cy + 5.5}" '
+        f'fill="none" stroke="{FACE}" stroke-width="1.2" stroke-linecap="round"/>'
     )
-    return f'<circle cx="{ax}" cy="{ay}" r="9" fill="{FIGURE_COLOR}">{cx_anim}{cy_anim}</circle>'
+
+
+def _shoe_svg(cx: float, cy: float, color: str) -> str:
+    """靴（楕円）を描く。"""
+    return f'<ellipse cx="{cx}" cy="{cy}" rx="{SHOE_RX}" ry="3.6" fill="{color}"/>'
+
+
+def _hand_svg(cx: float, cy: float, color: str) -> str:
+    """手（円）を描く。"""
+    return f'<circle cx="{cx}" cy="{cy}" r="3.6" fill="{color}"/>'
+
+
+def _shorts_svg(cx: float, cy: float) -> str:
+    """ショートパンツ（腰まわり）を描く。"""
+    return f'<rect x="{cx - 10}" y="{cy - 2}" width="20" height="13" rx="6" fill="{SHORTS}"/>'
+
+
+def _sleeve_svg(cx: float, cy: float) -> str:
+    """袖（肩のシャツ）を描く。"""
+    return f'<circle cx="{cx}" cy="{cy}" r="6" fill="{SHIRT}"/>'
 
 
 def _prop_svg(kind: str, hand_a: tuple, hand_b: tuple, dur: float, mid: float) -> str:
@@ -310,32 +360,56 @@ def render_exercise_animation(movement_pattern: str) -> str:
         """指定パーツの座標を返す。片方のポーズに無ければ相手側の値で代用する。"""
         return pose.get(key) or pose_b.get(key) or pose_a.get(key)
 
+    def endpoints(key: str):
+        """指定パーツの端点（手・足）の開始/終了座標を返す。"""
+        return part(pose_a, key)[-1], part(pose_b, key)[-1]
+
     svg = [
         f'<svg viewBox="0 0 {VIEW_WIDTH} {VIEW_HEIGHT}" xmlns="http://www.w3.org/2000/svg" '
-        f'role="img" aria-label="{pattern["label"]}のアニメーション" style="width:100%;height:auto;max-height:220px;">',
+        f'role="img" aria-label="{pattern["label"]}のアニメーション" style="width:100%;height:auto;max-height:230px;">',
         f'<line x1="8" y1="{GROUND_Y}" x2="{VIEW_WIDTH - 8}" y2="{GROUND_Y}" '
         f'stroke="{GROUND_COLOR}" stroke-width="2" stroke-linecap="round"/>',
     ]
 
-    # 奥側の手足（薄色）を先に描画して奥行きを出す
+    # --- 奥側（薄い肌色）：奥行きのため先に描く ---
     for far_key in ("arm2", "leg2"):
         if far_key in pose_a or far_key in pose_b:
-            svg.append(_animated_polyline(part(pose_a, far_key), part(pose_b, far_key), dur, mid, FAR_LIMB_COLOR, 4))
+            svg.append(_animated_polyline(part(pose_a, far_key), part(pose_b, far_key), dur, mid, SKIN_FAR, FAR_LIMB_WIDTH))
+    if "leg2" in pose_a or "leg2" in pose_b:
+        (ax, ay), (bx, by) = endpoints("leg2")
+        svg.append(_translated_group(_shoe_svg(ax, ay, SHOE_FAR), ax, ay, bx, by, dur, mid))
+    if "arm2" in pose_a or "arm2" in pose_b:
+        (ax, ay), (bx, by) = endpoints("arm2")
+        svg.append(_translated_group(_hand_svg(ax, ay, SKIN_FAR), ax, ay, bx, by, dur, mid))
 
     # 懸垂バーなど固定器具は体の後ろに描く
     if pattern["prop"] == "fixed_bar":
         svg.append(_prop_svg("fixed_bar", (0, 0), (0, 0), dur, mid))
 
-    # 背骨・手前の手足（濃色）
-    svg.append(_animated_polyline(pose_a["spine"], pose_b["spine"], dur, mid, FIGURE_COLOR, 5))
-    for near_key in ("arm", "leg"):
-        if near_key in pose_a or near_key in pose_b:
-            svg.append(_animated_polyline(part(pose_a, near_key), part(pose_b, near_key), dur, mid, FIGURE_COLOR, 5))
+    # --- 手前の脚（肌）＋靴 ---
+    svg.append(_animated_polyline(pose_a["leg"], pose_b["leg"], dur, mid, SKIN, LIMB_WIDTH))
+    (ax, ay), (bx, by) = endpoints("leg")
+    svg.append(_translated_group(_shoe_svg(ax, ay, SHOE), ax, ay, bx, by, dur, mid))
 
-    # 頭
-    svg.append(_animated_head(pose_a["head"], pose_b["head"], dur, mid))
+    # --- ショートパンツ（腰） ---
+    (hax, hay), (hbx, hby) = pose_a["spine"][1], pose_b["spine"][1]
+    svg.append(_translated_group(_shorts_svg(hax, hay), hax, hay, hbx, hby, dur, mid))
 
-    # 手に持つ器具（バーベル・ダンベル・ボール）
+    # --- 胴体（シャツ）---
+    svg.append(_animated_polyline(pose_a["spine"], pose_b["spine"], dur, mid, SHIRT, TORSO_WIDTH))
+
+    # --- 手前の腕（肌）＋袖＋手 ---
+    svg.append(_animated_polyline(pose_a["arm"], pose_b["arm"], dur, mid, SKIN, LIMB_WIDTH))
+    (sax, say), (sbx, sby) = pose_a["spine"][0], pose_b["spine"][0]
+    svg.append(_translated_group(_sleeve_svg(sax, say), sax, say, sbx, sby, dur, mid))
+    (ax, ay), (bx, by) = endpoints("arm")
+    svg.append(_translated_group(_hand_svg(ax, ay, SKIN), ax, ay, bx, by, dur, mid))
+
+    # --- 頭 ---
+    (hdax, hday), (hdbx, hdby) = pose_a["head"], pose_b["head"]
+    svg.append(_translated_group(_head_svg(hdax, hday), hdax, hday, hdbx, hdby, dur, mid))
+
+    # --- 手に持つ器具（バーベル・ダンベル・ボール）---
     if pattern["prop"] and pattern["prop"] != "fixed_bar":
         hand_a = part(pose_a, "arm")[-1]
         hand_b = part(pose_b, "arm")[-1]
