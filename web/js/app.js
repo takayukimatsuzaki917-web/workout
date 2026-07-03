@@ -345,7 +345,7 @@ document.addEventListener("click", (e) => {
     const id = actionEl.getAttribute("data-yt");
     actionEl.outerHTML =
       `<div class="aspect-video overflow-hidden rounded-xl bg-black">` +
-      `<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" ` +
+      `<iframe class="h-full w-full" src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" ` +
       `title="やり方の動画" frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div>`;
   }
 });
