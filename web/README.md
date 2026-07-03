@@ -1,25 +1,38 @@
-# web/ — 静的サイト版プロトタイプ（WIP）
+# web/ — 静的サイト版アプリ（メインUI）
 
-Streamlit版のデザイン上の限界を踏まえ、UIを **静的サイト（HTML + Tailwind + 素のJS）** へ移行する作業中のディレクトリ。
+競技と体格情報から筋トレプログラムを提案する **静的Webアプリ**（HTML + Tailwind CSS + 素のJavaScript）。
+ビルドツール不要で、そのまま静的ホスティング（GitHub Pages / Netlify 等）へデプロイできる。
 
-## 現状
-- `index.html` — 結果画面の**デザインモック**（現時点では柔道1競技・データ埋め込みの生成物）。
-  デザイン確定用で、次段階でJSによる動的レンダリング（プロフィール入力→競技選択→結果）に置き換える。
-- `data/muscles.json` — 筋肉ハイライト用のSVGパス。`vendor/bodyFront.ts` / `vendor/bodyBack.ts` から抽出したもの。
-- `vendor/` — [react-native-body-highlighter](https://github.com/HichamELBSI/react-native-body-highlighter)（MIT License）の筋肉図データ。`LICENSE-body-highlighter` に原ライセンスを保存。
+## 画面
+1. **プロフィール入力** — 性別・年齢・体重・身長・経験レベル（`localStorage` に保存）
+2. **競技選択** — 8競技から選択
+3. **結果** — 競技別プログラム（種目・回数・重量目安・消費カロリー）＋全身の筋肉ハイライト図
+   - 各種目カード: 対象筋肉のミニ解剖図・「やり方を動画で見る」（YouTube）・詳細モーダル（代替種目）
+
+## 構成
+- `index.html` — アプリシェル（Tailwind CDN・フォント読み込み・`#app`）
+- `js/`
+  - `data.js` — マスタJSONの読み込み
+  - `logic.js` — 適正重量・消費カロリー・プログラム組み立て・筋肉分類（Python版 `logic/` の移植）
+  - `musclemap.js` — 解剖図SVGの描画・筋肉IDの対応表
+  - `app.js` — 状態管理・画面遷移・レンダリング
+- `data/`
+  - `sports_master.json` / `exercises_master.json` — マスタ（リポジトリ直下 `data/` のコピー）
+  - `muscles.json` — 筋肉ハイライト用SVGパス（`vendor/parse_muscles.py` で生成）
+- `vendor/` — [react-native-body-highlighter](https://github.com/HichamELBSI/react-native-body-highlighter)（MIT）の筋肉図データと `LICENSE`、生成スクリプト
 
 ## デザイン方針
-- **体図**: オープンソースの解剖図SVG（`vendor/`）を色分け表示。
-- **動作の見せ方**: 種目名でのYouTube検索リンク（「やり方を動画で見る」）。手描きアニメは廃止。
-- **絵文字は使わない**（モノクロSVGアイコン＋タイポグラフィで統一）。
+- **体図**: オープンソースの解剖図SVGを色分け（主動筋=ピンク／協働筋=アンバー）
+- **動作**: 種目名でのYouTube検索リンク（「やり方を動画で見る」）
+- **絵文字は使わない**（モノクロSVGアイコン＋タイポグラフィで統一）
+- モバイルファースト（最大幅440px）／PCでは中央寄せ表示
 
-## ローカルで見る
+## ローカルで動かす
 ```bash
 python -m http.server 8080 --directory web
 # http://localhost:8080
 ```
 
-## 今後
-1. 計算ロジック（重量・カロリー・プログラム生成・筋肉分類）をJSへ移植
-2. プロフィール入力→競技選択→結果 の3画面、8競技すべてに対応
-3. モバイル/PC両対応で仕上げ
+## データ更新時
+- 競技・種目マスタを変えたら、`data/*.json`（リポジトリ直下）を `web/data/` にコピーする。
+- 筋肉図データ（`vendor/*.ts`）を更新したら `python web/vendor/parse_muscles.py` で `muscles.json` を再生成する。
