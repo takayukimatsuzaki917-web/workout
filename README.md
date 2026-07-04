@@ -2,6 +2,12 @@
 
 競技と体格情報を入力するだけで、その競技のパフォーマンス向上に直結する筋トレプログラム（種目・回数・セット数・重量目安・対象筋肉部位・消費カロリー）を自動提案するWebアプリ。
 
+## 公開URL
+
+https://takayukimatsuzaki917-web.github.io/workout/
+
+`main` ブランチの `web/` 配下を更新してpushすると、GitHub Actions（[.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml)）が自動でGitHub Pagesに再デプロイします。
+
 ## 実装バージョン
 
 本リポジトリには2つのUIがあります。**現在のメインは静的サイト版（`web/`）** です。
