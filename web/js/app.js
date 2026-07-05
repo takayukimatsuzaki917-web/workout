@@ -198,9 +198,9 @@ function resultScreen() {
   const cards = program.exercises.map(exerciseCard).join("");
 
   return `
-  <div class="px-4 pt-4 pb-2 flex items-center justify-between text-sm">
-    <button type="button" data-action="go-sport" class="font-medium text-slate-400 hover:text-slate-600">‹ 競技を変更</button>
-    <button type="button" data-action="go-profile" class="font-medium text-slate-400 hover:text-slate-600">プロフィール編集</button>
+  <div class="sticky top-[57px] z-10 flex items-center justify-between border-b border-slate-100 bg-white/95 px-4 py-3 text-sm backdrop-blur">
+    <button type="button" data-action="go-sport" class="font-medium text-slate-500 hover:text-indigo-600">‹ 競技を変更</button>
+    <button type="button" data-action="go-profile" class="font-medium text-slate-500 hover:text-indigo-600">プロフィール編集</button>
   </div>
 
   <section class="px-4">

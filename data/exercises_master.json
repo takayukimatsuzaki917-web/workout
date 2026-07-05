@@ -20,7 +20,7 @@
   },
   {
     "id": "deadlift_conventional",
-    "youtube_id": "O_sniQNwdck",
+    "youtube_id": "B9anvW1Pyd8",
     "movement_pattern": "hinge",
     "name_ja": "コンベンショナルデッドリフト",
     "category": "下半身",
@@ -39,7 +39,7 @@
   },
   {
     "id": "lunge_dumbbell",
-    "youtube_id": "5Q68jZe4tFg",
+    "youtube_id": "6W7g4dcOwXI",
     "movement_pattern": "lunge",
     "name_ja": "ダンベルランジ",
     "category": "下半身",
@@ -57,7 +57,7 @@
   },
   {
     "id": "leg_press",
-    "youtube_id": "A2JlSIu3nl8",
+    "youtube_id": "evio4bf0Ltw",
     "movement_pattern": "squat",
     "name_ja": "レッグプレス",
     "category": "下半身",
@@ -76,7 +76,7 @@
   },
   {
     "id": "calf_raise_standing",
-    "youtube_id": "xDSrCEvSnyM",
+    "youtube_id": "F5os-UdZhw0",
     "movement_pattern": "calf_raise",
     "name_ja": "スタンディングカーフレイズ",
     "category": "下半身",
@@ -94,7 +94,7 @@
   },
   {
     "id": "bulgarian_split_squat",
-    "youtube_id": "EKQ4p8ogZkI",
+    "youtube_id": "H9khnncpeys",
     "movement_pattern": "lunge",
     "name_ja": "ブルガリアンスクワット",
     "category": "下半身",
@@ -131,7 +131,7 @@
   },
   {
     "id": "hip_thrust",
-    "youtube_id": "6S1b8pU9sHk",
+    "youtube_id": "-LJ5-PwQYIA",
     "movement_pattern": "hinge",
     "name_ja": "ヒップスラスト",
     "category": "下半身",
@@ -169,7 +169,7 @@
   },
   {
     "id": "shoulder_press_dumbbell",
-    "youtube_id": "uHaetTkx-_g",
+    "youtube_id": "tp9RRXCvnko",
     "movement_pattern": "vertical_push",
     "name_ja": "ダンベルショルダープレス",
     "category": "上半身プッシュ",
@@ -188,7 +188,7 @@
   },
   {
     "id": "push_up",
-    "youtube_id": "5SBAn4WnHWI",
+    "youtube_id": "IdQESpQE9ew",
     "movement_pattern": "horizontal_push",
     "name_ja": "プッシュアップ",
     "category": "上半身プッシュ",
@@ -243,7 +243,7 @@
   },
   {
     "id": "pull_up",
-    "youtube_id": "40Sq7kkUuWM",
+    "youtube_id": "BvA7EZm56Nc",
     "movement_pattern": "vertical_pull",
     "name_ja": "懸垂",
     "category": "上半身プル",
@@ -299,7 +299,7 @@
   },
   {
     "id": "dumbbell_row",
-    "youtube_id": "71NcdOwfMv8",
+    "youtube_id": "Bhts7sueBGw",
     "movement_pattern": "horizontal_pull",
     "name_ja": "ダンベルロウ",
     "category": "上半身プル",
@@ -626,7 +626,7 @@
   },
   {
     "id": "bike_ergometer",
-    "youtube_id": "9mGLGb4PazI",
+    "youtube_id": "BHh3fZrnjKc",
     "movement_pattern": "cardio_cycle",
     "name_ja": "エアロバイク",
     "category": "有酸素/持久系補助",
@@ -680,7 +680,7 @@
   },
   {
     "id": "jump_rope",
-    "youtube_id": "5KvhPsN8lWw",
+    "youtube_id": "Sx66FvhCW-s",
     "movement_pattern": "cardio_run",
     "name_ja": "縄跳び",
     "category": "有酸素/持久系補助",
