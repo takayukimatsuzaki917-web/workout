@@ -2,12 +2,6 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "streamlit",
-      "runtimeExecutable": "streamlit",
-      "runtimeArgs": ["run", "app.py"],
-      "port": 8501
-    },
-    {
       "name": "web",
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8080", "--directory", "web"],

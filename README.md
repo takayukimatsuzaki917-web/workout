@@ -4,27 +4,18 @@
 
 ## 公開URL
 
-https://takayukimatsuzaki917-web.github.io/workout/
+https://ubiquitous-syrniki-c8e4f0.netlify.app/
 
-`main` ブランチの `web/` 配下を更新してpushすると、GitHub Actions（[.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml)）が自動でGitHub Pagesに再デプロイします。
+`main` ブランチの `web/` 配下を更新してpushすると、Netlifyが自動で再デプロイします。
 
-## 実装バージョン
-
-本リポジトリには2つのUIがあります。**現在のメインは静的サイト版（`web/`）** です。
-
-| バージョン | 場所 | 技術 | 位置づけ |
-|---|---|---|---|
-| **静的サイト版（メイン）** | `web/` | HTML + Tailwind CSS + 素のJS | 洗練したモバイルUI。解剖図SVG＋YouTube動画。ビルド不要でそのままデプロイ可 |
-| Streamlit版（初期プロトタイプ） | `app.py` / `ui/` / `logic/` | Python + Streamlit | データ・計算ロジックの検証用。pytest済み |
-
-計算ロジックは Python（`logic/`）で設計・テストし、それを `web/js/logic.js` へ移植しています。
-
-## 使い方（静的サイト版）
+## 使い方
 
 ```bash
 python -m http.server 8080 --directory web
 # http://localhost:8080
 ```
+
+ビルド不要（HTML + Tailwind CSS + 素のJavaScript）。ブラウザで直接動作します。
 
 1. **プロフィール入力** — 性別・年齢・体重・身長・経験レベル
 2. **競技選択** — サッカー・野球・水泳・ロードバイク・マラソン・ボルダリング・柔道・ラグビー
@@ -32,43 +23,18 @@ python -m http.server 8080 --directory web
 
 詳細は [web/README.md](web/README.md) を参照。
 
-## Streamlit版（ロジック検証用）の構成
+## 構成
 
-- `app.py` — 画面ルーター（プロフィール／競技選択／結果画面の切り替え）
-- `data/sports_master.json` — 対象8競技のマスタデータ（主動筋群・エネルギー系比率・推奨種目など）
-- `data/exercises_master.json` — 38種目のエクササイズマスタデータ
-- `logic/weight_calculator.py` — 適正重量（推定1RM・目安重量）算出ロジック
-- `logic/calorie_calculator.py` — MET法による消費カロリー算出ロジック
-- `logic/program_builder.py` — 競技×プロフィールからのプログラム組み立て・代替種目検索ロジック
-- `logic/muscle_coverage.py` — 筋肉ハイライト（主動筋/協働筋）の分類ロジック
-- `ui/body_diagram.py` — 前面/背面SVGボディ図の生成
-- `ui/screens.py` — 3画面（プロフィール入力／競技選択／プログラム結果）のUI
-- `ui/styles.py` — 共通CSS・免責事項フッター
-
-## Streamlit版のセットアップ
-
-### ローカル実行
-
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-### Docker実行
-
-```bash
-docker compose up --build
-```
-
-`http://localhost:8501` でアクセスできます。
-
-## テスト
-
-```bash
-pytest tests/
-```
-
-ロジック層（重量算出・カロリー算出・プログラム組み立て・筋肉分類）は純粋関数として実装されており、pytestで検証済みです。
+- `web/index.html` — アプリの土台（Tailwind CDN・ヘッダー）
+- `web/js/app.js` — 画面描画・状態管理（プロフィール／競技選択／結果の3画面）
+- `web/js/logic.js` — 適正重量・消費カロリー・プログラム組み立て・筋肉分類ロジック
+- `web/js/data.js` — マスタデータ読み込み
+- `web/js/musclemap.js` — 解剖図SVGの体図描画
+- `web/data/sports_master.json` — 対象8競技のマスタデータ
+- `web/data/exercises_master.json` — 38種目のエクササイズマスタデータ（YouTube動画ID含む）
+- `web/data/muscles.json` — 体図SVGの座標データ
+- `web/vendor/` — 体図SVG素材の出所（[react-native-body-highlighter](https://github.com/HichamELBSI/react-native-body-highlighter), MIT License）
+- `netlify.toml` — Netlifyデプロイ設定
 
 ## 対象競技
 
@@ -78,7 +44,7 @@ pytest tests/
 
 - プロフィール・選択履歴のサーバ側保存（現状はブラウザの `localStorage`）
 - 種目データの拡充・代替種目提案ロジックの高度化
-- GitHub Pages 等への静的デプロイ・公開
+- 未検出のYouTube動画（MELOS/ティップネス以外）の継続的な差し替え
 
 ## 注意事項
 
